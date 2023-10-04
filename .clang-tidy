@@ -1,0 +1,50 @@
+---
+# cppcoreguidelines-missing-std-forward is disabled because of performance issues
+# TODO: Investigate origin of performance problems and:
+# 1) Fix clang-tidy check
+# 2) Figure out whether code can be changed to accommodate performance issues (for compatibility with current and older clang-tidy versions)
+Checks: |
+    bugprone-*,
+    -bugprone-dynamic-static-initializers,
+    cert-*,
+    concurrency-*,
+    cppcoreguidelines-*,
+    -cppcoreguidelines-missing-std-forward,
+    google-readability-todo,
+    hicpp-*,
+    misc-*,
+    modernize-*,
+    performance-*,
+    portability-*,
+    readability-*
+CheckOptions:
+    readability-identifier-naming.AbstractClassCase: CamelCase
+    readability-identifier-naming.ClassCase: CamelCase
+    readability-identifier-naming.EnumCase: CamelCase
+    readability-identifier-naming.StructCase: CamelCase
+    readability-identifier-naming.TypeAliasCase: CamelCase
+    readability-identifier-naming.TypeAliasIgnoredRegexp: '^(iterator|const_iterator|iterator_category|difference_type|value_type|reference|const_reference|pointer|([A-Z][^_]*_t))$'
+    readability-identifier-naming.TypedefCase: CamelCase
+    readability-identifier-naming.TypeTemplateParameterCase: CamelCase
+    readability-identifier-naming.TemplateTemplateParameterCase: CamelCase
+    readability-identifier-naming.EnumConstantCase: camelBack
+    readability-identifier-naming.ClassConstantCase: camelBack
+    readability-identifier-naming.GlobalConstantCase: camelBack
+    readability-identifier-naming.GlobalConstantIgnoredRegexp: '^[a-z][^_]*_v$'
+    readability-identifier-naming.GlobalFunctionCase: camelBack
+    readability-identifier-naming.GlobalPointerCase: camelBack
+    readability-identifier-naming.GlobalVariableCase: camelBack
+    readability-identifier-naming.LocalConstantCase: camelBack
+    readability-identifier-naming.LocalPointerCase: camelBack
+    readability-identifier-naming.LocalVariableCase: camelBack
+    readability-identifier-naming.MemberCase: camelBack
+    readability-identifier-naming.MethodCase: camelBack
+    readability-identifier-naming.ParameterCase: camelBack
+    readability-identifier-naming.VariableCase: camelBack
+    readability-identifier-naming.ValueTemplateParameterCase: camelBack
+    readability-identifier-naming.MacroDefinitionCase: UPPER_CASE
+    readability-function-cognitive-complexity.IgnoreMacros: true
+WarningsAsErrors:  '1'
+HeaderFilterRegex: 'src/'
+FormatStyle:       file
+

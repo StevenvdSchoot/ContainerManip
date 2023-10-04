@@ -1,0 +1,25 @@
+{
+    "build": {
+        "dockerfile": "Dockerfile"
+    },
+    "runArgs": [
+        "--volume=${localWorkspaceFolder}:/workspaces/${localWorkspaceFolderBasename}:Z"
+    ],
+    "workspaceMount": "",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+				"llvm-vs-code-extensions.vscode-clangd",
+				"ms-vscode.cmake-tools",
+				"twxs.cmake",
+				"cheshirekow.cmake-format",
+				"cschlosser.doxdocgen",
+				"yzhang.markdown-all-in-one",
+				"streetsidesoftware.code-spell-checker",
+				"SanderRonde.vscode--gerrit",
+				"svdschoot.compdb",
+				"ms-vscode.cpptools"
+			]
+        }
+    }
+}

@@ -1,0 +1,144 @@
+{
+    "version": 6,
+    "configurePresets": [
+        {
+            "name": "clang",
+            "displayName": "Development build with clang",
+            "description": "Development build using clang, including analysis tools",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": {
+                    "type": "BOOL",
+                    "value": "ON"
+                },
+                "ENABLE_INCLUDE_WHAT_YOU_USE": {
+                    "type": "BOOL",
+                    "value": "ON"
+                },
+                "ENABLE_CLANG_TIDY": {
+                    "type": "BOOL",
+                    "value": "ON"
+                },
+                "CONTAINERMANIP_SUPPORT_MODULES": {
+                    "type": "BOOL",
+                    "value": "OFF"
+                },
+                "CMAKE_COMPILE_WARNING_AS_ERROR": {
+                    "type": "BOOL",
+                    "value": "ON"
+                }
+            },
+            "environment": {
+                "CC": "clang",
+                "CXX": "clang++"
+            }
+        },
+        {
+            "name": "clang-quick",
+            "displayName": "Quick development build with clang",
+            "description": "Development build using clang, without any analysis tools being run",
+            "binaryDir": "${sourceDir}/build/.llvm-quick",
+            "inherits": [
+                "clang"
+            ],
+            "cacheVariables": {
+                "ENABLE_INCLUDE_WHAT_YOU_USE": {
+                    "type": "BOOL",
+                    "value": "ON"
+                },
+                "ENABLE_CLANG_TIDY": {
+                    "type": "BOOL",
+                    "value": "ON"
+                }
+            }
+        },
+        {
+            "name": "gcc",
+            "displayName": "Quick compile GCC",
+            "description": "Development build using GCC, without any analysis tools being run",
+            "generator": "Ninja",
+            "binaryDir": "${sourceDir}/build/.gcc",
+            "cacheVariables": {
+                "CMAKE_EXPORT_COMPILE_COMMANDS": {
+                    "type": "BOOL",
+                    "value": "ON"
+                },
+                "ENABLE_INCLUDE_WHAT_YOU_USE": {
+                    "type": "BOOL",
+                    "value": "OFF"
+                },
+                "ENABLE_CLANG_TIDY": {
+                    "type": "BOOL",
+                    "value": "OFF"
+                },
+                "CONTAINERMANIP_SUPPORT_MODULES": {
+                    "type": "BOOL",
+                    "value": "OFF"
+                },
+                "CMAKE_COMPILE_WARNING_AS_ERROR": {
+                    "type": "BOOL",
+                    "value": "ON"
+                }
+            },
+            "environment": {
+                "CC": "gcc",
+                "CXX": "g++"
+            }
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "clang",
+            "configurePreset": "clang"
+        },
+        {
+            "name": "clang-quick",
+            "configurePreset": "clang-quick"
+        },
+        {
+            "name": "gcc",
+            "configurePreset": "gcc"
+        }
+    ],
+    "testPresets": [
+        {
+            "name": "clang",
+            "configurePreset": "clang",
+            "output": {
+                "shortProgress": true,
+                "outputOnFailure": true
+            },
+            "execution": {
+                "noTestsAction": "error",
+                "stopOnFailure": true,
+                "jobs": 0
+            }
+        },
+        {
+            "name": "clang-quick",
+            "configurePreset": "clang-quick",
+            "output": {
+                "shortProgress": true,
+                "outputOnFailure": true
+            },
+            "execution": {
+                "noTestsAction": "error",
+                "stopOnFailure": true,
+                "jobs": 0
+            }
+        },
+        {
+            "name": "gcc",
+            "configurePreset": "gcc",
+            "output": {
+                "outputOnFailure": true
+            },
+            "execution": {
+                "noTestsAction": "error",
+                "stopOnFailure": true,
+                "jobs": 0
+            }
+        }
+    ]
+}
